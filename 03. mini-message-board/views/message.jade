@@ -1,9 +1,8 @@
 mixin message(message)
-  li
     div
       p Content: #[span #{message.text}]
     div
-      p Author: #[span #{message.user}]
+      p Author: #[span #{message.author}]
     div
       p Timestamp: #[span #{moment(message.date).format('HH:MM, DD.MM.YYYY')}]
 

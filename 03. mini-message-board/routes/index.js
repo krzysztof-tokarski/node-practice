@@ -5,12 +5,12 @@ const router = express.Router();
 const messages = [
   {
     text: 'Hi there!',
-    user: 'Amando',
+    author: 'Amando',
     date: new Date(),
   },
   {
     text: 'Hello World!',
-    user: 'Charles',
+    author: 'Charles',
     date: new Date(),
   },
 ];
@@ -19,4 +19,4 @@ router.get('/', function(req, res, next) {
   res.render('index', {messages: messages});
 });
 
-module.exports = router;
+module.exports = {router, messages};

@@ -10,5 +10,7 @@ module.exports = {
   },
   rules: {
     'new-cap': 'off',
+    'linebreak-style': 'off',
+    'require-jsdoc': 'off',
   },
 };

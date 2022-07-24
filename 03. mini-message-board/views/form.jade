@@ -1,0 +1,30 @@
+extends layout
+
+block content
+  h2 Add new message
+  form(
+    method='POST'
+    action='/message/new'
+    class='form'
+  )
+    div(
+      class='form-field'
+    )
+      label(for='author') Author
+      input(
+        type='text'
+        id='author'
+        name='author'
+      )
+
+    div(
+      class='form-field'
+    )
+      label(for='text') Message
+      input(
+        type='text'
+        id='text'
+        name='text'
+      )
+
+    button(type='submit') Submit
