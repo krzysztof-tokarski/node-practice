@@ -23,7 +23,7 @@ db.on("error", console.error.bind(console, "MongoDB connection error:"));
 const app = express();
 
 // view engine setup
-app.set("views", path.join(__dirname, "views"));
+app.set("views", path.join(__dirname, "./public/views"));
 app.set("view engine", "jade");
 
 app.use(logger("dev"));

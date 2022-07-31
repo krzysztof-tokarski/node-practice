@@ -1,4 +1,7 @@
 const Category = require('../models/category.model');
+const { body, validationResult } = require("express-validator");
+
+const createCategoryFormPath = './category/category_form';
 
 // exports.GETlistOfAllCategories = (request, response, next) => {
 //   Category.find({})
@@ -30,12 +33,43 @@ const Category = require('../models/category.model');
 // }
 
 exports.GETcreateCategoryForm = (request, response, next) => {
-  response.render('category_form');
+  response.render(createCategoryFormPath);
 }
 
-exports.POSTcreateCategoryForm = (request, response) => {
+exports.POSTcreateCategoryForm = [
+  body('name', 'Category name is required').trim().isLength({min: 1}).isAlpha().withMessage('Category name must be alphabet letters only.'),
+  (req,res,next) => {
+    const errors = validationResult(req);
+    const category =  new Category({name: req.body.name });
 
-}
+    if(!errors.isEmpty()) {
+      return res.render(createCategoryFormPath, {
+        category: category,
+        errors: errors.array()
+      })
+    } else {
+      Category.findOne({name: req.body.name }).exec(
+        (err, foundCategory) => {
+          if (err) {
+            return console.log('1')
+          }
+
+          if (foundCategory) {
+            return console.log('2')
+          }
+
+          category.save((err) => {
+            if (err) {
+              return console.log(err)
+            }
+
+            res.redirect(category.url);
+          })
+        }
+      )
+    }
+  }
+]
 
 exports.POSTdeleteCategoryForm = (request, response) => {
 

@@ -1,4 +1,4 @@
-extends layout
+extends ../layout
 
 block content
   h2 Add new category
@@ -10,11 +10,11 @@ block content
     div(
       class='form-field'
     )
-      label(for='category') Category name
+      label(for='name') Category name
       input(
         type='text'
-        id='category'
-        name='category'
+        id='name'
+        name='name'
       )
 
     button(type='submit') Submit
