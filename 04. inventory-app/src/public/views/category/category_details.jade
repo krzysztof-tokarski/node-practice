@@ -2,3 +2,15 @@ extends ../base
 
 block content
   h2 #[span.category #{category.name}] category details page
+    form(
+    method='POST'
+    action='/catalog/category/delete'
+    )
+
+      input(
+      type='hidden'
+      name='category-id'
+      value=category._id
+      )
+
+      button(type='submit') Delete

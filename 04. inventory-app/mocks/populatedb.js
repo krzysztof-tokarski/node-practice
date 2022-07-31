@@ -84,7 +84,6 @@
 //   }  );
 // }
 
-
 // function bookInstanceCreate(book, imprint, due_back, status, cb) {
 //   bookinstancedetail = {
 //     book: book,
@@ -105,7 +104,6 @@
 //     cb(null, book)
 //   }  );
 // }
-
 
 // function createGenreAuthors(cb) {
 //     async.series([
@@ -138,7 +136,6 @@
 //         cb);
 // }
 
-
 // function createBooks(cb) {
 //     async.parallel([
 //         function(callback) {
@@ -166,7 +163,6 @@
 //         // optional callback
 //         cb);
 // }
-
 
 // function createBookInstances(cb) {
 //     async.parallel([
@@ -208,8 +204,6 @@
 //         cb);
 // }
 
-
-
 // async.series([
 //     createGenreAuthors,
 //     createBooks,
@@ -227,6 +221,3 @@
 //     // All done, disconnect from database
 //     mongoose.connection.close();
 // });
-
-
-

@@ -2,7 +2,7 @@ extends ../base
 
 block content
   h2 List of categories
-    if categoriesList
+    if categoriesList.length > 0
       ol
         each category in categoriesList
           li
