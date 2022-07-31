@@ -31,6 +31,10 @@ body main h2 {
   padding-top: 10px;
   padding-bottom: 10px;
 }
+body main h2 .category {
+  color: red;
+  text-transform: uppercase;
+}
 body main form {
   display: flex;
   flex-direction: column;
@@ -39,12 +43,30 @@ body main form {
 body main form .form-field {
   display: flex;
   flex-direction: column;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
   width: fit-content;
 }
 body main form button {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
   width: fit-content;
-}/*# sourceMappingURL=style.css.map */
+}
+body main ol {
+  padding-left: 20px;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+body main ol li {
+  font-size: 12px;
+  color: gray;
+}
+body main ol li a {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.704);
+  text-transform: uppercase;
+  font-weight: normal;
+}
+body main ol li a:hover {
+  font-weight: bold;
+}
+
+/*# sourceMappingURL=style.css.map */

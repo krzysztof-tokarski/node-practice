@@ -1,0 +1,13 @@
+extends ../base
+
+block content
+  h2 List of categories
+    if categoriesList
+      ol
+        each category in categoriesList
+          li
+            a(href=category.url) #{category.name}
+    else
+      h3 There are currently no defined categories
+
+

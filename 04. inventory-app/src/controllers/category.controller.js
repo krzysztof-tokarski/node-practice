@@ -1,36 +1,42 @@
+const mongoose = require('mongoose');
 const Category = require('../models/category.model');
 const { body, validationResult } = require("express-validator");
 
 const createCategoryFormPath = './category/category_form';
+const categoryDetailPagePath = './category/category_details';
+const categoryListPagePath = './category/category_list'
+const index = '/'
 
-// exports.GETlistOfAllCategories = (request, response, next) => {
-//   Category.find({})
-//   .sort({name: 1})
-//   .exec((error, results) => {
-//     if (error) return next(error);
+exports.GETlistOfAllCategories = (request, response, next) => {
+  Category.find({})
+  .sort({name: 1})
+  .exec((error, results) => {
+    if (error) return next(error);
 
-//     console.log(response);
-//     response.render('', {
-//       // categoriesList: results.categor
-//     })
-//   })
-// }
+    response.render(categoryListPagePath, {
+      categoriesList: results
+    })
+  })
+}
 
-// exports.GETcategoryDetailPage = (request, respons, next) => {
-//   // Category.findById(request.params.id).exec((error, response) => {
-//   //   if (error) return next(error);
-//   //   if (response.category === null) {
-//   //     const error404 = new Error('Could not find a category with the provided id.');
-//   //     error404.status = 404;
-//   //     return next(error404);
-//   //   }
+exports.GETcategoryDetailPage = (request, response, next) => {
+  const id = mongoose.Types.ObjectId(request.params.id);
 
-//   //   console.log(response);
-//   //   response.render('', {
-//   //     category: "",
-//   //   })
-//   // })
-// }
+  Category.findById(id).exec((error, result) => {
+    if (error) {
+      return response.redirect(index)
+    }
+    if (result.category === null) {
+      const error404 = new Error('Could not find a category with the provided id.');
+      error404.status = 404;
+      return next(error404);
+    }
+
+    response.render(categoryDetailPagePath, {
+      category: result,
+    })
+  })
+}
 
 exports.GETcreateCategoryForm = (request, response, next) => {
   response.render(createCategoryFormPath);
@@ -63,7 +69,7 @@ exports.POSTcreateCategoryForm = [
               return console.log(err)
             }
 
-            res.redirect(category.url);
+            // res.redirect(category.url);
           })
         }
       )
