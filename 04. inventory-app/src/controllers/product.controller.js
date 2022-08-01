@@ -1,50 +1,51 @@
 const mongoose = require("mongoose");
-const Category = require("../models/category.model");
+const Product = require("../models/product.model");
 const { body, validationResult } = require("express-validator");
 
-const createCategoryFormPath = "./category/create_category_form";
-const categoryDetailPagePath = "./category/category_details";
-const categoryListPagePath = "./category/category_list";
+const createProductFormPath = "./product/create_product_form";
+const productDetailPagePath = "./product/product_details";
+const productListPagePath = "./product/product_list";
 const index = "/";
 
-exports.GETlistOfAllCategories = (request, response, next) => {
-  Category.find({})
+exports.GETlistOfAllProducts = (request, response, next) => {
+  Product.find({})
     .sort({ name: 1 })
     .exec((error, results) => {
       if (error) return next(error);
 
-      response.render(categoryListPagePath, {
-        categoriesList: results,
+      response.render(productListPagePath, {
+        productsList: results,
       });
     });
 };
 
-exports.GETcategoryDetailPage = (request, response, next) => {
+exports.GETproductDetailPage = (request, response, next) => {
   const id = mongoose.Types.ObjectId(request.params.id);
 
-  Category.findById(id).exec((error, result) => {
+  Product.findById(id).exec((error, result) => {
     if (error) {
       return response.redirect(index);
     }
     // TODO below
-    if (result.category === null) {
+    if (result.product === null) {
       const error404 = new Error(
-        "Could not find a category with the provided id."
+        "Could not find a product with the provided id."
       );
       error404.status = 404;
       return next(error404);
     }
 
-    response.render(categoryDetailPagePath, {
-      category: result,
+    response.render(productDetailPagePath, {
+      product: result,
     });
   });
 };
 
-exports.GETcreateCategoryForm = (request, response, next) => {
-  response.render(createCategoryFormPath);
+exports.GETcreateProductForm = (request, response, next) => {
+  response.render(createProductFormPath);
 };
 
+// TODO
 exports.POSTcreateCategoryForm = [
   body("name", "Category name is required")
     .trim()
@@ -83,6 +84,7 @@ exports.POSTcreateCategoryForm = [
   },
 ];
 
+// TODO
 exports.POSTdeleteCategoryForm = [
   body("category-id", "Category ID is required")
     .trim()
