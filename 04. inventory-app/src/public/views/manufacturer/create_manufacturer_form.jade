@@ -1,0 +1,50 @@
+extends ../base
+
+block content
+  h2 Add new manufacturer
+  form(
+    method='POST'
+    action='/catalog/product/create'
+    class='form'
+  )
+    div(
+      class='form-field'
+    )
+      label(for='name') Product name
+      input(
+        type='text'
+        id='name'
+        name='name'
+      )
+
+    div(
+      class='form-field'
+    )
+      label(for='price') Price
+      input(
+        type='number'
+        id='price'
+        name='price'
+      )
+
+    div(
+      class='form-field'
+    )
+      label(for='description') Description
+      textarea(
+        id='description'
+        name='description'
+      )
+
+    div(
+      class='form-field'
+    )
+      label(for='manufacturer') Manufacturer
+      select(
+        id='manufacturer'
+        name='manufacturer'
+      )
+
+    button(
+      type='submit'
+      ) Submit

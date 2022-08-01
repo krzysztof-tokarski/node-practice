@@ -32,11 +32,13 @@ app.use(express.static(path.join(__dirname, "public")));
 const indexRouter = require("./routes/index.route");
 const categoryRouter = require("./routes/category.route");
 const productRouter = require("./routes/product.route");
+const manufacturerRouter = require("./routes/manufacturer.route");
 // TODO routers
 
 app.use("/", indexRouter);
 app.use("/catalog/category", categoryRouter);
 app.use("/catalog/product", productRouter);
+app.use("/catalog/manufacturer", manufacturerRouter);
 
 
 // catch 404 and forward to error handler
