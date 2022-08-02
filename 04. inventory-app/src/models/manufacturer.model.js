@@ -9,7 +9,7 @@ const ManufacturerSchema = new Schema({
   },
 });
 
-ManufacturerSchema.virtual("url").get(() => {
+ManufacturerSchema.virtual("url").get(function () {
   return `/catalog/manufacturer/${this._id}`;
 });
 

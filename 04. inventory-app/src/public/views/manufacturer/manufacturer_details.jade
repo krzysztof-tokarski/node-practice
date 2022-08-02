@@ -1,0 +1,16 @@
+extends ../base
+
+block content
+  h2 #[span.category #{manufacturer.name}] manufacturer details page
+    form(
+    method='POST'
+    action='/catalog/manufacturer/delete'
+    )
+
+      input(
+      type='hidden'
+      name='category-id'
+      value=manufacturer._id
+      )
+
+      button(type='submit') Delete

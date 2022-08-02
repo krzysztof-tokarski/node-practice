@@ -1,0 +1,11 @@
+extends ../base
+
+block content
+  h2 List of manufacturers
+    if manufacturersList.length > 0
+      ol
+        each manufacturer in manufacturersList
+          li
+            a(href=manufacturer.url) #{manufacturer.name}
+    else
+      h3 There are currently no defined manufacturers

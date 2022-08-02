@@ -36,7 +36,7 @@ exports.GETmanufacturerDetailPage = (request, response, next) => {
     }
 
     response.render(manufacturerDetailPagePath, {
-      product: result,
+      manufacturer: result,
     });
   });
 };
@@ -66,6 +66,8 @@ exports.POSTcreateManufacturerForm = [
       });
     } else {
       // TODO
+      console.log(manufacturer)
+
       Manufacturer.findOne({ name: req.body.name }).exec((err, found) => {
         if (err) {
           return console.log("1");
