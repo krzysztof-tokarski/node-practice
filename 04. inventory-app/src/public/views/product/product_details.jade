@@ -1,0 +1,22 @@
+extends ../base
+
+block content
+  h2 #[span.category #{product.name}] product details page
+  p Price: #{product.price}
+  p Manufacturer: #{product.manufacturer}
+  p Description: #{product.description}
+
+  form(
+    method='POST'
+    action='/catalog/product/delete'
+    )
+
+      input(
+      type='hidden'
+      name='product-id'
+      value=product._id
+      )
+
+      button(type='submit') Delete
+
+

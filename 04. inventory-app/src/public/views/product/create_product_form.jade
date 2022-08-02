@@ -44,6 +44,14 @@ block content
         id='manufacturer'
         name='manufacturer'
       )
+        option(
+          selected='selected'
+          disabled=true
+        ) Default
+        each manufacturer in manufacturerList
+          option(
+            value=manufacturer._id
+          ) #{manufacturer.name}
 
     button(
       type='submit'

@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Product = require("../models/product.model");
+const Manufacturer = require('../models/manufacturer.model');
 const { body, validationResult } = require("express-validator");
 
 const createProductFormPath = "./product/create_product_form";
@@ -8,6 +9,7 @@ const productListPagePath = "./product/product_list";
 const index = "/";
 
 exports.GETlistOfAllProducts = (request, response, next) => {
+  // TODO move to func
   Product.find({})
     .sort({ name: 1 })
     .exec((error, results) => {
@@ -42,42 +44,57 @@ exports.GETproductDetailPage = (request, response, next) => {
 };
 
 exports.GETcreateProductForm = (request, response, next) => {
-  response.render(createProductFormPath);
+  // TODO move to func
+  Manufacturer.find({})
+    .sort({ name: 1 })
+    .exec((error, results) => {
+      if (error) return next(error);
+
+      response.render(createProductFormPath, {
+        manufacturerList: results
+      })
+    });
 };
 
 // TODO
-exports.POSTcreateCategoryForm = [
-  body("name", "Category name is required")
+exports.POSTcreateProductForm = [
+  body("name", "Product name is required")
     .trim()
-    .isLength({ min: 1 })
-    .isAlpha()
-    .withMessage("Category name must be alphabet letters only."),
+    .isLength({ min: 1 }).withMessage(),
+  body('price', 'Price is required').isNumeric().withMessage('Price must be a number'),
+  body('description', 'Description is required').trim().isLength({min: 1}),
+  body('manufacuter', 'Manufacturer is required'),
 
   (req, res, next) => {
     const errors = validationResult(req);
-    const category = new Category({ name: req.body.name });
+    const product = new Product({
+      name: req.body.name,
+      price: req.body.price,
+      description: req.body.description,
+      manufacturer: req.body.manufacturer,
+    });
 
     if (!errors.isEmpty()) {
-      return res.render(createCategoryFormPath, {
-        category: category,
+      return res.render(createProductFormPath, {
+        product: product,
         errors: errors.array(),
       });
     } else {
-      Category.findOne({ name: req.body.name }).exec((err, foundCategory) => {
+      Product.findOne({ name: req.body.name }).exec((err, found) => {
         if (err) {
           return console.log("1");
         }
 
-        if (foundCategory) {
+        if (found) {
           return console.log("2");
         }
 
-        category.save((err) => {
+        product.save((err) => {
           if (err) {
             return console.log(err);
           }
 
-          res.redirect(category.url);
+          res.redirect(product.url);
         });
       });
     }
