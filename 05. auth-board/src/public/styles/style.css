@@ -5,5 +5,22 @@
 body {
   background-color: ghostwhite;
 }
+body nav {
+  display: flex;
+  gap: 1em;
+}
+body form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+body form .form-field {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+}
+body form button {
+  width: fit-content;
+}
 
 /*# sourceMappingURL=style.css.map */

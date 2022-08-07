@@ -1,15 +1,16 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 const process = require("process");
 const dotenv = require("dotenv").config();
 
-var indexRouter = require('./src/routes/index');
-var usersRouter = require('./src/routes/users');
+const indexRouter = require('./src/routes/index');
+const usersRouter = require('./src/routes/users');
+const signUpForm = require('./src/routes/sign-up-form');
 
-var app = express();
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, './src/public/views'));
@@ -23,6 +24,7 @@ app.use(express.static(path.join(__dirname, './src/public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/sign-up', signUpForm);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

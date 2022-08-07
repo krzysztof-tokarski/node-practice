@@ -1,0 +1,51 @@
+extends base
+
+block content
+  h1 SIGN UP FORM
+  form(
+    method='POST'
+    class='form'
+  )
+    div(
+      class='form-field'
+    )
+      label(for='name') First name
+      input(
+        type='text'
+        id='first-name'
+        name='first-name'
+      )
+
+    div(
+      class='form-field'
+    )
+      label(for='name') Last name
+      input(
+        type='text'
+        id='last-name'
+        name='last-name'
+      )
+
+    div(
+      class='form-field'
+    )
+      label(for='username') Username
+      input(
+        type='text'
+        id='username'
+        name='username'
+      )
+
+    div(
+      class='form-field'
+    )
+      label(for='password') Password
+      input(
+        type='text'
+        id='password'
+        name='password'
+      )
+
+    button(
+      type='submit'
+      ) Submit

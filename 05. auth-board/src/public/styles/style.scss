@@ -4,4 +4,26 @@
 
 body {
   background-color: ghostwhite;
+
+  nav {
+    display: flex;
+    gap: 1em;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      width: fit-content;
+    }
+
+    button {
+      width: fit-content;
+    }
+  }
 }
+
