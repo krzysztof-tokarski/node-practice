@@ -1,10 +1,22 @@
+const process = require("process");
+const dotenv = require("dotenv").config();
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const process = require("process");
-const dotenv = require("dotenv").config();
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+
+// DB connection
+const mongoose = require("mongoose");
+const mongoDbConnectionString = process.env.CONNECTION_STRING;
+mongoose.connect(mongoDbConnectionString, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 const indexRouter = require('./src/routes/index');
 const usersRouter = require('./src/routes/users');

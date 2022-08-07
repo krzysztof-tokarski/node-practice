@@ -24,12 +24,15 @@ const UserSchema = new Schema({
     trim: true,
   },
   passwordHash: {
+    type: String,
     required: true,
   },
   passwordSalt: {
+    type: String,
     required: true,
   },
   active: {
+    type: Boolean,
     required: true,
     default: false
   }

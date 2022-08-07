@@ -10,6 +10,7 @@
     "dev": "npm-run-all --parallel nodemon sass"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "dotenv": "^16.0.1",
@@ -26,6 +27,7 @@
     "sass": "^1.54.3"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
     "eslint": "^8.21.0",
     "nodemon": "^2.0.19",
     "prettier": "^2.7.1"
