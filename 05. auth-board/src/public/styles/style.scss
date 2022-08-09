@@ -3,11 +3,17 @@
 }
 
 body {
-  background-color: ghostwhite;
+  background-color: gray;
+  color: ghostwhite;
 
   nav {
     display: flex;
     gap: 1em;
+
+    a {
+      color: ghostwhite;
+      text-decoration: none;
+    }
   }
 
   form {
